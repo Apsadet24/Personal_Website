@@ -182,23 +182,27 @@
         /* --- KHUSUS TAMPILAN HP (RESPONSIVE) --- */
         @media (max-width: 900px) {
             .slide-atas { flex-direction: column; }
-            .profil-box { min-width: 100%; width: 100%; }
+            .profil-box { min-width: 100%; width: 100%; order: 1; }
             
-            /* PERBAIKAN VIDEO DI HP */
+            /* PERBAIKAN VIDEO: Paksa Lanskap 16:9 & Menyatu */
             .video-box { 
                 min-width: 100%; 
                 width: 100%; 
                 height: auto; 
-                aspect-ratio: 16/9; /* Menjaga tampilan lanskap rapi */
-                border-radius: 0; /* Menghilangkan sudut melengkung agar menyatu ke pinggir */
+                aspect-ratio: 16 / 9; 
+                border-radius: 0; 
+                margin: 0;
+                order: 3;
+                overflow: hidden;
             } 
             .video-box video {
-                position: relative; /* Menjamin video muncul stabil */
-                width: 100%;
-                height: 100%;
+                position: absolute;
+                top: 0; left: 0;
+                width: 100%; height: 100%;
+                object-fit: cover;
             }
 
-            .marquee { position: relative; } 
+            .marquee { order: 2; position: relative; } 
             .content-wrapper { flex-direction: column; align-items: center; }
             .links-container { width: 100%; max-width: 100%; margin-bottom: 30px; }
             .aesthetic-side { width: 100%; text-align: center; }
@@ -227,7 +231,7 @@
                 </p>
             </div>
             <div class="video-box">
-                <video autoplay muted loop playsinline><source src="01_Video.mp4" type="video/mp4"></video>
+                <video id="bgVideo" autoplay muted loop playsinline><source src="01_Video.mp4" type="video/mp4"></video>
                 <div class="vignette-overlay"></div>
             </div>
             <div class="marquee">
@@ -337,11 +341,10 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // Script tambahan untuk memastikan video tetap play di semua HP
-        document.addEventListener('DOMContentLoaded', function() {
-            var v = document.querySelector('video');
+        // Skrip tambahan untuk memastikan video diputar di HP yang memblokir autoplay
+        window.addEventListener('load', function() {
+            var v = document.getElementById('bgVideo');
             v.play().catch(function() {
-                // Jika browser memblokir, coba play saat ada sentuhan pertama
                 document.addEventListener('touchstart', function() { v.play(); }, {once: true});
             });
         });
