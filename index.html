@@ -181,15 +181,15 @@
 
         /* --- KHUSUS TAMPILAN HP (RESPONSIVE) --- */
         @media (max-width: 900px) {
-            .slide-atas { flex-direction: column; }
-            .profil-box { min-width: 100%; width: 100%; order: 1; }
+            .slide-atas { flex-direction: column; min-height: auto; }
+            .profil-box { min-width: 100%; width: 100%; order: 1; padding: 40px 20px; }
             
-            /* PERBAIKAN VIDEO: Paksa Lanskap 16:9 & Menyatu */
+            /* FIX VIDEO HP: LANSKAP & FULL PINGGIR */
             .video-box { 
                 min-width: 100%; 
                 width: 100%; 
                 height: auto; 
-                aspect-ratio: 16 / 9; 
+                aspect-ratio: 16 / 9; /* Memaksa rasio lanskap layar lebar */
                 border-radius: 0; 
                 margin: 0;
                 order: 3;
@@ -202,8 +202,8 @@
                 object-fit: cover;
             }
 
-            .marquee { order: 2; position: relative; } 
-            .content-wrapper { flex-direction: column; align-items: center; }
+            .marquee { order: 2; position: relative; background: rgba(0,0,0,0.8); } 
+            .content-wrapper { flex-direction: column; align-items: center; padding: 0 15px; }
             .links-container { width: 100%; max-width: 100%; margin-bottom: 30px; }
             .aesthetic-side { width: 100%; text-align: center; }
             .quote-box { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding: 30px 0 0 0; }
@@ -230,27 +230,16 @@
                     identitas yang lahir tepat pada hari Sabtu, 24 April 2004.
                 </p>
             </div>
+            
             <div class="video-box">
-                <video id="bgVideo" autoplay muted loop playsinline><source src="01_Video.mp4" type="video/mp4"></video>
+                <video id="bgVideo" autoplay muted loop playsinline preload="auto">
+                    <source src="01_Video.mp4" type="video/mp4">
+                </video>
                 <div class="vignette-overlay"></div>
             </div>
+
             <div class="marquee">
                 <div class="marquee-content">
-                    <span><i class="fab fa-instagram"></i> @apsadet24</span>
-                    <span><i class="fab fa-tiktok"></i> @apsadet24</span>
-                    <span><i class="fab fa-whatsapp"></i> A24</span>
-                    <span><i class="fab fa-youtube"></i> @apsadetaloruha24</span>
-                    <span><i class="fab fa-facebook"></i> Apsadet AloRuha</span>
-                    <span><i class="fab fa-instagram"></i> @apsadet24</span>
-                    <span><i class="fab fa-tiktok"></i> @apsadet24</span>
-                    <span><i class="fab fa-whatsapp"></i> A24</span>
-                    <span><i class="fab fa-youtube"></i> @apsadetaloruha24</span>
-                    <span><i class="fab fa-facebook"></i> Apsadet AloRuha</span>
-                    <span><i class="fab fa-instagram"></i> @apsadet24</span>
-                    <span><i class="fab fa-tiktok"></i> @apsadet24</span>
-                    <span><i class="fab fa-whatsapp"></i> A24</span>
-                    <span><i class="fab fa-youtube"></i> @apsadetaloruha24</span>
-                    <span><i class="fab fa-facebook"></i> Apsadet AloRuha</span>
                     <span><i class="fab fa-instagram"></i> @apsadet24</span>
                     <span><i class="fab fa-tiktok"></i> @apsadet24</span>
                     <span><i class="fab fa-whatsapp"></i> A24</span>
@@ -322,7 +311,7 @@
             <div class="gallery-item"><img src="foto5.jpeg" alt="5"><div class="item-overlay"><span>Gn.Egon 2026</span></div></div>
             <div class="gallery-item"><img src="foto6.jpeg" alt="6"><div class="item-overlay"><span>Gn.Egon 2026</span></div></div>
         </div>
-        <footer class="footer-static" style="position: fixed; bottom: 0; left: 0;">
+        <footer class="footer-static" style="margin-top: 50px;">
             © OFFICIAL WEBSITE APSADET ALORUHA
         </footer>
     </div>
@@ -341,11 +330,14 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // Skrip tambahan untuk memastikan video diputar di HP yang memblokir autoplay
+        // Script untuk kelancaran video di semua HP (iOS/Android)
         window.addEventListener('load', function() {
             var v = document.getElementById('bgVideo');
             v.play().catch(function() {
-                document.addEventListener('touchstart', function() { v.play(); }, {once: true});
+                // Jika browser memblokir autoplay, jalankan video saat sentuhan pertama
+                document.addEventListener('touchstart', function() { 
+                    v.play(); 
+                }, {once: true});
             });
         });
     </script>
