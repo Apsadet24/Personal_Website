@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Website Apsadet AloRuha</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:italic&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .hidden { display: none !important; }
+
+        /* --- HALAMAN UTAMA --- */
+        .slide-atas {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            min-height: 100vh;
+        }
+
+        .profil-box {
+            flex: 1; min-width: 50%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            background-color: #000; padding: 60px 40px; text-align: center;
+        }
+
+        .profil-box img {
+            width: 160px; height: 160px; border-radius: 50%;
+            object-fit: cover; border: 3px solid #333;
+            margin-bottom: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        .profil-box h2 { font-size: 2rem; letter-spacing: 2px; margin-bottom: 10px; }
+        .bio-short { color: #888; font-style: italic; margin-bottom: 30px; letter-spacing: 1px; }
+        .deskripsi-teks { max-width: 500px; color: #ccc; line-height: 1.8; font-weight: 300; font-size: 0.95rem; }
+
+        .video-box { flex: 1; min-width: 50%; position: relative; background: #000; overflow: hidden; }
+        .video-box video { position: absolute; width: 100%; height: 100%; object-fit: cover; }
+        .vignette-overlay {
+            position: absolute; inset: 0; z-index: 2;
+            background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.8) 100%),
+                        linear-gradient(to right, #000, transparent 20%);
+            pointer-events: none;
+        }
+
+        /* Running Text */
+        .marquee {
+            position: absolute; bottom: 0; width: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(10px);
+            padding: 15px 0; overflow: hidden; z-index: 10;
+        }
+        .marquee-content { display: flex; width: max-content; animation: scroll 35s linear infinite; }
+        .marquee-content span { padding-right: 60px; font-size: 0.95rem; color: #ddd; display: flex; align-items: center; }
+        .marquee-content i { margin-right: 10px; }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* --- SECTION 2: JEJAK DIGITAL & KONTEN --- */
+        .links-section {
+            padding: 100px 5%;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('02_picture.png') center/cover fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: stretch; 
+            gap: 40px;
+            max-width: 1100px;
+            width: 100%;
+            margin-bottom: 60px;
+        }
+
+        /* Sisi Kiri: Social Links */
+        .links-container { 
+            flex: 1; 
+            max-width: 400px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .link-card {
+            display: flex; align-items: center; padding: 18px 25px;
+            background: #fff; color: #000; text-decoration: none;
+            border-radius: 50px; margin-bottom: 12px; font-weight: 600;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .link-card:last-child { margin-bottom: 0; }
+        .link-card:hover { transform: translateX(10px); background: #f0f0f0; }
+        .link-card i { margin-right: 15px; width: 20px; text-align: center; }
+
+        /* Sisi Kanan: Ruang Estetik */
+        .aesthetic-side { 
+            flex: 1.2; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px;
+            justify-content: space-between;
+        }
+        
+        .quote-box { 
+            border-left: 2px solid rgba(255,255,255,0.2); 
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+        .quote-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem; line-height: 1.4; margin-bottom: 10px; color: #eee;
+        }
+
+        .status-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+            height: 100%;
+        }
+        .status-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 20px; border-radius: 20px; backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .status-card small {
+            display: block; text-transform: uppercase; letter-spacing: 2px;
+            font-size: 0.6rem; color: #666; margin-bottom: 8px;
+        }
+        .status-card p { font-size: 0.85rem; color: #ccc; font-weight: 300; line-height: 1.5; }
+
+        .btn-open-gallery {
+            cursor: pointer; color: #444; font-size: 0.7rem;
+            letter-spacing: 5px; text-transform: uppercase; transition: 0.4s;
+            margin-top: 40px;
+        }
+        .btn-open-gallery:hover { color: #fff; letter-spacing: 8px; }
+
+        /* --- HALAMAN GALERI --- */
+        #gallery-page { background-color: #050505; min-height: 100vh; padding: 60px 5% 120px; }
+        .gallery-nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto 60px; }
+        .btn-back { cursor: pointer; font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        .btn-back:hover { color: #fff; transform: translateX(-5px); }
+        .gallery-title { font-size: 1.2rem; letter-spacing: 10px; font-weight: 300; text-transform: uppercase; }
+        
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px; max-width: 1100px; margin: 0 auto;
+        }
+        .gallery-item { position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: 15px; background: #111; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 1s; filter: brightness(0.7); }
+        .gallery-item:hover img { transform: scale(1.1); filter: brightness(1); }
+        .item-overlay {
+            position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            display: flex; align-items: flex-end; padding: 25px; opacity: 0; transition: 0.4s;
+        }
+        .gallery-item:hover .item-overlay { opacity: 1; }
+        .item-overlay span { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; }
+
+        .footer-static {
+            background: #fff; color: #000; padding: 20px;
+            text-align: center; font-size: 0.65rem; font-weight: 800;
+            letter-spacing: 3px; width: 100%; text-transform: uppercase;
+        }
+
+        /* --- KHUSUS TAMPILAN HP (RESPONSIVE) --- */
+        @media (max-width: 900px) {
+            .slide-atas { flex-direction: column; }
+            .profil-box, .video-box { min-width: 100%; width: 100%; }
+            .video-box { height: 400px; } /* Menjamin video tetap terlihat di HP */
+            .marquee { position: relative; } 
+            .content-wrapper { flex-direction: column; align-items: center; }
+            .links-container { width: 100%; max-width: 100%; margin-bottom: 30px; }
+            .aesthetic-side { width: 100%; text-align: center; }
+            .quote-box { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding: 30px 0 0 0; }
+            .status-grid { grid-template-columns: 1fr; }
+            .status-card { grid-column: span 1 !important; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-page">
+        <section class="slide-atas">
+            <div class="profil-box">
+                <img src="01_picture.jpg" alt="Apsadet">
+                <h2>Apsadet AloRuha</h2>
+                <p class="bio-short">Just a solivagant soul</p>
+                <p class="deskripsi-teks">
+                    Hi, perkenalkan saya Apsadet Aloruha. Nama panggilan saya Apsadet,
+                    tapi orang-orang biasanya memanggil saya Apsa. Bagi banyak orang, 
+                    nama saya mungkin terdengar aneh atau unik, namun di baliknya 
+                    tersimpan garis waktu yang presisi: Ap Sa adalah rajutan dari April, 
+                    Sabtu, dan Det yang merujuk pada angka 24 serta tahun 2004. sebuah
+                    identitas yang lahir tepat pada hari Sabtu, 24 April 2004.
+                </p>
+            </div>
+            <div class="video-box">
+                <video autoplay muted loop playsinline><source src="01_Video.mp4" type="video/mp4"></video>
+                <div class="vignette-overlay"></div>
+            </div>
+            <div class="marquee">
+                <div class="marquee-content">
+                    <span><i class="fab fa-instagram"></i> @apsadet24</span>
+                    <span><i class="fab fa-tiktok"></i> @apsadet24</span>
+                    <span><i class="fab fa-whatsapp"></i> A24</span>
+                    <span><i class="fab fa-youtube"></i> @apsadetaloruha24</span>
+                    <span><i class="fab fa-facebook"></i> Apsadet AloRuha</span>
+                    <span><i class="fab fa-instagram"></i> @apsadet24</span>
+                    <span><i class="fab fa-tiktok"></i> @apsadet24</span>
+                    <span><i class="fab fa-whatsapp"></i> A24</span>
+                    <span><i class="fab fa-youtube"></i> @apsadetaloruha24</span>
+                    <span><i class="fab fa-facebook"></i> Apsadet AloRuha</span>
+                    <span><i class="fab fa-instagram"></i> @apsadet24</span>
+                    <span><i class="fab fa-tiktok"></i> @apsadet24</span>
+                    <span><i class="fab fa-whatsapp"></i> A24</span>
+                    <span><i class="fab fa-youtube"></i> @apsadetaloruha24</span>
+                    <span><i class="fab fa-facebook"></i> Apsadet AloRuha</span>
+                    <span><i class="fab fa-instagram"></i> @apsadet24</span>
+                    <span><i class="fab fa-tiktok"></i> @apsadet24</span>
+                    <span><i class="fab fa-whatsapp"></i> A24</span>
+                    <span><i class="fab fa-youtube"></i> @apsadetaloruha24</span>
+                    <span><i class="fab fa-facebook"></i> Apsadet AloRuha</span>
+                    <span><i class="fab fa-instagram"></i> @apsadet24</span>
+                    <span><i class="fab fa-tiktok"></i> @apsadet24</span>
+                    <span><i class="fab fa-whatsapp"></i> A24</span>
+                    <span><i class="fab fa-youtube"></i> @apsadetaloruha24</span>
+                    <span><i class="fab fa-facebook"></i> Apsadet AloRuha</span>
+            </div>
+        </section>
+
+        <section class="links-section">
+            <div class="content-wrapper">
+                
+                <div class="links-container">
+                    <a href="https://instagram.com/apsadet24" class="link-card" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://tiktok.com/@apsadet24" class="link-card" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                    <a href="https://whatsapp.com/channel/0029Vb7vxPA96H4WmX3JDl1G" class="link-card" target="_blank"><i class="fab fa-whatsapp"></i> Saluran WhatsApp</a>
+                    <a href="https://facebook.com/apsadet.thecitizens" class="link-card" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="https://youtube.com/@apsadetaloruha24" class="link-card" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+                </div>
+
+                <div class="aesthetic-side">
+                    <div class="quote-box">
+                        <h3>"Matahari terbenam untuk terbit kembali, sebagaimana kita harus melepas untuk menemukan diri."</h3>
+                        <p style="color: #666; font-style: italic; font-size: 0.75rem;">— Catatan Sang Pengelana</p>
+                    </div>
+
+                    <div class="status-grid">
+                        <div class="status-card">
+                            <small>Lokasi</small>
+                            <p>Di bawah langit yang sama</p>
+                        </div>
+                        <div class="status-card">
+                            <small>Suasana</small>
+                            <p>Hening yang Bermakna</p>
+                        </div>
+                        <div class="status-card" style="grid-column: span 2;">
+                            <small>Perjalanan Saat Ini</small>
+                            <p>Menjelajahi jalur kehidupan yang tak terlihat, merajut memori melalui lensa dan doa.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div onclick="togglePage('gallery')" class="btn-open-gallery">
+                <i class="fas fa-expand"></i> Jelajahi Galeri
+            </div>
+        </section>
+
+        <footer class="footer-static">© OFFICIAL WEBSITE APSADET ALORUHA</footer>
+    </div>
+
+    <div id="gallery-page" class="hidden">
+        <nav class="gallery-nav">
+            <div onclick="togglePage('main')" class="btn-back"><i class="fas fa-chevron-left"></i> Kembali</div>
+            <h2 class="gallery-title">Memori</h2>
+            <div style="width: 50px;"></div>
+        </nav>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="foto1.jpeg" alt="1"><div class="item-overlay"><span>Gn.Egon 2024</span></div></div>
+            <div class="gallery-item"><img src="foto2.jpeg" alt="2"><div class="item-overlay"><span>Gn.Egon 2026</span></div></div>
+            <div class="gallery-item"><img src="foto3.jpeg" alt="3"><div class="item-overlay"><span>Gn.Egon 2024</span></div></div>
+            <div class="gallery-item"><img src="foto4.jpeg" alt="4"><div class="item-overlay"><span>Gn.Egon 2024</span></div></div>
+            <div class="gallery-item"><img src="foto5.jpeg" alt="5"><div class="item-overlay"><span>Gn.Egon 2026</span></div></div>
+            <div class="gallery-item"><img src="foto6.jpeg" alt="6"><div class="item-overlay"><span>Gn.Egon 2026</span></div></div>
+        </div>
+        <footer class="footer-static" style="position: fixed; bottom: 0; left: 0;">
+            © OFFICIAL WEBSITE APSADET ALORUHA
+        </footer>
+    </div>
+
+    <script>
+        function togglePage(page) {
+            const main = document.getElementById('main-page');
+            const gallery = document.getElementById('gallery-page');
+            if(page === 'gallery') {
+                main.classList.add('hidden');
+                gallery.classList.remove('hidden');
+            } else {
+                gallery.classList.add('hidden');
+                main.classList.remove('hidden');
+            }
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
