@@ -50,17 +50,8 @@
         .deskripsi-teks { max-width: 500px; color: #ccc; line-height: 1.8; font-weight: 300; font-size: 0.95rem; }
 
         .video-box { flex: 1; min-width: 50%; position: relative; background: #000; overflow: hidden; }
+        .video-box video { position: absolute; width: 100%; height: 100%; object-fit: cover; }
         
-        /* CSS Video agar memenuhi container */
-        .video-box video { 
-            position: absolute; 
-            top: 0;
-            left: 0;
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-        }
-
         .vignette-overlay {
             position: absolute; inset: 0; z-index: 2;
             background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.8) 100%),
@@ -113,6 +104,7 @@
             border-radius: 50px; margin-bottom: 12px; font-weight: 600;
             transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .link-card:last-child { margin-bottom: 0; }
         .link-card:hover { transform: translateX(10px); background: #f0f0f0; }
         .link-card i { margin-right: 15px; width: 20px; text-align: center; }
 
@@ -127,27 +119,32 @@
         .quote-box { 
             border-left: 2px solid rgba(255,255,255,0.2); 
             padding-left: 25px;
+            margin-bottom: 10px;
         }
         .quote-box h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem; line-height: 1.4; color: #eee;
+            font-size: 1.6rem; line-height: 1.4; margin-bottom: 10px; color: #eee;
         }
 
         .status-grid { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
             gap: 15px; 
+            height: 100%;
         }
         .status-card {
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.1);
             padding: 20px; border-radius: 20px; backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         .status-card small {
             display: block; text-transform: uppercase; letter-spacing: 2px;
             font-size: 0.6rem; color: #666; margin-bottom: 8px;
         }
-        .status-card p { font-size: 0.85rem; color: #ccc; font-weight: 300; }
+        .status-card p { font-size: 0.85rem; color: #ccc; font-weight: 300; line-height: 1.5; }
 
         .btn-open-gallery {
             cursor: pointer; color: #444; font-size: 0.7rem;
@@ -156,10 +153,11 @@
         }
         .btn-open-gallery:hover { color: #fff; letter-spacing: 8px; }
 
-        /* --- GALLERY --- */
+        /* --- HALAMAN GALERI --- */
         #gallery-page { background-color: #050505; min-height: 100vh; padding: 60px 5% 120px; }
         .gallery-nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto 60px; }
-        .btn-back { cursor: pointer; font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 2px; }
+        .btn-back { cursor: pointer; font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        .btn-back:hover { color: #fff; transform: translateX(-5px); }
         .gallery-title { font-size: 1.2rem; letter-spacing: 10px; font-weight: 300; text-transform: uppercase; }
         
         .gallery-grid {
@@ -168,6 +166,13 @@
         }
         .gallery-item { position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: 15px; background: #111; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 1s; filter: brightness(0.7); }
+        .gallery-item:hover img { transform: scale(1.1); filter: brightness(1); }
+        .item-overlay {
+            position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            display: flex; align-items: flex-end; padding: 25px; opacity: 0; transition: 0.4s;
+        }
+        .gallery-item:hover .item-overlay { opacity: 1; }
+        .item-overlay span { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; }
 
         .footer-static {
             background: #fff; color: #000; padding: 20px;
@@ -179,10 +184,7 @@
         @media (max-width: 900px) {
             .slide-atas { flex-direction: column; }
             .profil-box, .video-box { min-width: 100%; width: 100%; }
-            
-            /* Tinggi video di HP agar lebih dominan */
-            .video-box { height: 70vh; min-height: 500px; } 
-
+            .video-box { height: 450px; } /* Tinggi video di HP */
             .marquee { position: relative; } 
             .content-wrapper { flex-direction: column; align-items: center; }
             .links-container { width: 100%; max-width: 100%; margin-bottom: 30px; }
@@ -206,21 +208,15 @@
                     tapi orang-orang biasanya memanggil saya Apsa. Bagi banyak orang, 
                     nama saya mungkin terdengar aneh atau unik, namun di baliknya 
                     tersimpan garis waktu yang presisi: Ap Sa adalah rajutan dari April, 
-                    Sabtu, dan Det yang merujuk pada angka 24 serta tahun 2004.
+                    Sabtu, dan Det yang merujuk pada angka 24 serta tahun 2004. sebuah
+                    identitas yang lahir tepat pada hari Sabtu, 24 April 2004.
                 </p>
             </div>
 
             <div class="video-box">
-                <video 
-                    autoplay 
-                    muted 
-                    loop 
-                    playsinline 
-                    webkit-playsinline 
-                    preload="auto"
-                    poster="01_picture.jpg">
+                <video autoplay muted loop playsinline webkit-playsinline poster="01_picture.jpg">
                     <source src="01_Video.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
+                    Browser Anda tidak mendukung tag video.
                 </video>
                 <div class="vignette-overlay"></div>
             </div>
@@ -234,6 +230,9 @@
                     <span><i class="fab fa-facebook"></i> Apsadet AloRuha</span>
                     <span><i class="fab fa-instagram"></i> @apsadet24</span>
                     <span><i class="fab fa-tiktok"></i> @apsadet24</span>
+                    <span><i class="fab fa-whatsapp"></i> A24</span>
+                    <span><i class="fab fa-youtube"></i> @apsadetaloruha24</span>
+                    <span><i class="fab fa-facebook"></i> Apsadet AloRuha</span>
                 </div>
             </div>
         </section>
@@ -253,9 +252,20 @@
                         <h3>"Matahari terbenam untuk terbit kembali, sebagaimana kita harus melepas untuk menemukan diri."</h3>
                         <p style="color: #666; font-style: italic; font-size: 0.75rem;">— Catatan Sang Pengelana</p>
                     </div>
+
                     <div class="status-grid">
-                        <div class="status-card"><small>Lokasi</small><p>Di bawah langit yang sama</p></div>
-                        <div class="status-card"><small>Suasana</small><p>Hening yang Bermakna</p></div>
+                        <div class="status-card">
+                            <small>Lokasi</small>
+                            <p>Di bawah langit yang sama</p>
+                        </div>
+                        <div class="status-card">
+                            <small>Suasana</small>
+                            <p>Hening yang Bermakna</p>
+                        </div>
+                        <div class="status-card" style="grid-column: span 2;">
+                            <small>Perjalanan Saat Ini</small>
+                            <p>Menjelajahi jalur kehidupan yang tak terlihat, merajut memori melalui lensa dan doa.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -275,14 +285,16 @@
             <div style="width: 50px;"></div>
         </nav>
         <div class="gallery-grid">
-            <div class="gallery-item"><img src="foto1.jpeg" alt="1"></div>
-            <div class="gallery-item"><img src="foto2.jpeg" alt="2"></div>
-            <div class="gallery-item"><img src="foto3.jpeg" alt="3"></div>
-            <div class="gallery-item"><img src="foto4.jpeg" alt="4"></div>
-            <div class="gallery-item"><img src="foto5.jpeg" alt="5"></div>
-            <div class="gallery-item"><img src="foto6.jpeg" alt="6"></div>
+            <div class="gallery-item"><img src="foto1.jpeg" alt="1"><div class="item-overlay"><span>Gn.Egon 2024</span></div></div>
+            <div class="gallery-item"><img src="foto2.jpeg" alt="2"><div class="item-overlay"><span>Gn.Egon 2026</span></div></div>
+            <div class="gallery-item"><img src="foto3.jpeg" alt="3"><div class="item-overlay"><span>Gn.Egon 2024</span></div></div>
+            <div class="gallery-item"><img src="foto4.jpeg" alt="4"><div class="item-overlay"><span>Gn.Egon 2024</span></div></div>
+            <div class="gallery-item"><img src="foto5.jpeg" alt="5"><div class="item-overlay"><span>Gn.Egon 2026</span></div></div>
+            <div class="gallery-item"><img src="foto6.jpeg" alt="6"><div class="item-overlay"><span>Gn.Egon 2026</span></div></div>
         </div>
-        <footer class="footer-static" style="margin-top: 50px;">© OFFICIAL WEBSITE APSADET ALORUHA</footer>
+        <footer class="footer-static" style="margin-top: 50px;">
+            © OFFICIAL WEBSITE APSADET ALORUHA
+        </footer>
     </div>
 
     <script>
@@ -298,14 +310,6 @@
             }
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
-
-        // Script tambahan untuk MEMAKSA video play di beberapa browser HP
-        document.addEventListener('DOMContentLoaded', function() {
-            var v = document.querySelector('video');
-            v.play().catch(function(error) {
-                console.log("Autoplay dicegah oleh browser, mencoba lagi saat interaksi.");
-            });
-        });
     </script>
 </body>
 </html>
