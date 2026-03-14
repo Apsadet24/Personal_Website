@@ -62,134 +62,103 @@
         /* Running Text */
         .marquee {
             position: absolute; bottom: 0; width: 100%;
-            background: rgba(0,0,0,0.7); backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
             padding: 15px 0; overflow: hidden; z-index: 10;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
         .marquee-content { display: flex; width: max-content; animation: scroll 35s linear infinite; }
-        .marquee-content span { padding-right: 60px; font-size: 0.95rem; color: #ddd; display: flex; align-items: center; }
-        .marquee-content i { margin-right: 10px; }
+        .marquee-content span { padding-right: 60px; font-size: 0.9rem; color: #eee; display: flex; align-items: center; font-weight: 500; }
+        .marquee-content i { margin-right: 10px; color: #fff; }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        /* --- SECTION 2: JEJAK DIGITAL & KONTEN --- */
+        /* --- SECTION 2: LINKS --- */
         .links-section {
-            padding: 100px 5%;
+            padding: 80px 5%;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('02_picture.png') center/cover fixed;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: flex; flex-direction: column; align-items: center;
         }
 
         .content-wrapper {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: stretch; 
-            gap: 40px;
-            max-width: 1100px;
-            width: 100%;
-            margin-bottom: 60px;
+            display: flex; gap: 40px; max-width: 1100px; width: 100%; margin-bottom: 60px;
         }
 
-        .links-container { 
-            flex: 1; 
-            max-width: 400px; 
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+        .links-container { flex: 1; max-width: 400px; display: flex; flex-direction: column; gap: 12px; }
 
         .link-card {
             display: flex; align-items: center; padding: 18px 25px;
             background: #fff; color: #000; text-decoration: none;
-            border-radius: 50px; margin-bottom: 12px; font-weight: 600;
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50px; font-weight: 600; transition: 0.3s;
         }
-        .link-card:last-child { margin-bottom: 0; }
         .link-card:hover { transform: translateX(10px); background: #f0f0f0; }
         .link-card i { margin-right: 15px; width: 20px; text-align: center; }
 
-        .aesthetic-side { 
-            flex: 1.2; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 20px;
-            justify-content: space-between;
-        }
-        
-        .quote-box { 
-            border-left: 2px solid rgba(255,255,255,0.2); 
-            padding-left: 25px;
-            margin-bottom: 10px;
-        }
-        .quote-box h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem; line-height: 1.4; margin-bottom: 10px; color: #eee;
-        }
+        .aesthetic-side { flex: 1.2; display: flex; flex-direction: column; gap: 20px; }
+        .quote-box { border-left: 2px solid rgba(255,255,255,0.2); padding-left: 25px; }
+        .quote-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 1.4; color: #eee; }
 
-        .status-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 15px; 
-            height: 100%;
-        }
+        .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .status-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
             padding: 20px; border-radius: 20px; backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
-        .status-card small {
-            display: block; text-transform: uppercase; letter-spacing: 2px;
-            font-size: 0.6rem; color: #666; margin-bottom: 8px;
-        }
-        .status-card p { font-size: 0.85rem; color: #ccc; font-weight: 300; line-height: 1.5; }
+        .status-card small { display: block; text-transform: uppercase; letter-spacing: 2px; font-size: 0.6rem; color: #666; margin-bottom: 5px; }
+        .status-card p { font-size: 0.85rem; color: #ccc; }
 
         .btn-open-gallery {
-            cursor: pointer; color: #444; font-size: 0.7rem;
-            letter-spacing: 5px; text-transform: uppercase; transition: 0.4s;
-            margin-top: 40px;
+            cursor: pointer; color: #555; font-size: 0.7rem; letter-spacing: 5px;
+            text-transform: uppercase; transition: 0.4s; margin-top: 40px;
         }
         .btn-open-gallery:hover { color: #fff; letter-spacing: 8px; }
 
-        /* --- HALAMAN GALERI --- */
-        #gallery-page { background-color: #050505; min-height: 100vh; padding: 60px 5% 120px; }
-        .gallery-nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto 60px; }
-        .btn-back { cursor: pointer; font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-        .btn-back:hover { color: #fff; transform: translateX(-5px); }
-        .gallery-title { font-size: 1.2rem; letter-spacing: 10px; font-weight: 300; text-transform: uppercase; }
-        
-        .gallery-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px; max-width: 1100px; margin: 0 auto;
-        }
-        .gallery-item { position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: 15px; background: #111; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 1s; filter: brightness(0.7); }
-        .gallery-item:hover img { transform: scale(1.1); filter: brightness(1); }
-        .item-overlay {
-            position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            display: flex; align-items: flex-end; padding: 25px; opacity: 0; transition: 0.4s;
-        }
-        .gallery-item:hover .item-overlay { opacity: 1; }
-        .item-overlay span { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; }
+        /* --- GALERI --- */
+        #gallery-page { background-color: #050505; min-height: 100vh; padding: 60px 5%; }
+        .gallery-nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto 40px; }
+        .btn-back { cursor: pointer; font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 2px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+        .gallery-item { position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: 15px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: 0.5s; }
+        .gallery-item:hover img { filter: brightness(1); transform: scale(1.05); }
 
         .footer-static {
-            background: #fff; color: #000; padding: 20px;
-            text-align: center; font-size: 0.65rem; font-weight: 800;
-            letter-spacing: 3px; width: 100%; text-transform: uppercase;
+            background: #fff; color: #000; padding: 20px; text-align: center;
+            font-size: 0.65rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
         }
 
-        /* --- RESPONSIVE MOBILE --- */
+        /* --- RESPONSIVE MOBILE OPTIMIZED --- */
         @media (max-width: 900px) {
-            .slide-atas { flex-direction: column; }
-            .profil-box, .video-box { min-width: 100%; width: 100%; }
-            .video-box { height: 450px; } /* Tinggi video di HP */
-            .marquee { position: relative; } 
-            .content-wrapper { flex-direction: column; align-items: center; }
-            .links-container { width: 100%; max-width: 100%; margin-bottom: 30px; }
-            .aesthetic-side { width: 100%; text-align: center; }
-            .quote-box { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding: 30px 0 0 0; }
+            .slide-atas { flex-direction: column; min-height: auto; }
+            
+            /* Susun urutan: Profil (1), Running Text (2), Video (3) */
+            .profil-box { 
+                order: 1; 
+                padding: 40px 20px 20px; 
+                min-height: auto;
+            }
+            .profil-box img { width: 120px; height: 120px; margin-bottom: 15px; }
+            .profil-box h2 { font-size: 1.6rem; }
+            .bio-short { margin-bottom: 15px; }
+
+            .marquee { 
+                order: 2; 
+                position: relative; 
+                bottom: auto; 
+                background: rgba(255,255,255,0.1);
+                margin: 10px 0;
+            }
+
+            .video-box { 
+                order: 3; 
+                height: 380px; /* Video cukup besar untuk dilihat jelas */
+                width: 90%; 
+                margin: 0 auto 30px;
+                border-radius: 20px;
+                overflow: hidden;
+            }
+            .video-box video { position: relative; height: 100%; width: 100%; }
+            .vignette-overlay { display: none; } /* Matikan overlay di HP agar video lebih cerah */
+
+            .content-wrapper { flex-direction: column; gap: 30px; }
+            .links-container { max-width: 100%; }
             .status-grid { grid-template-columns: 1fr; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
         }
@@ -214,7 +183,7 @@
             </div>
 
             <div class="video-box">
-                <video autoplay muted loop playsinline webkit-playsinline poster="01_picture.jpg">
+                <video autoplay muted loop playsinline poster="01_picture.jpg">
                     <source src="01_Video.mp4" type="video/mp4">
                     Browser Anda tidak mendukung tag video.
                 </video>
@@ -250,22 +219,10 @@
                 <div class="aesthetic-side">
                     <div class="quote-box">
                         <h3>"Matahari terbenam untuk terbit kembali, sebagaimana kita harus melepas untuk menemukan diri."</h3>
-                        <p style="color: #666; font-style: italic; font-size: 0.75rem;">— Catatan Sang Pengelana</p>
                     </div>
-
                     <div class="status-grid">
-                        <div class="status-card">
-                            <small>Lokasi</small>
-                            <p>Di bawah langit yang sama</p>
-                        </div>
-                        <div class="status-card">
-                            <small>Suasana</small>
-                            <p>Hening yang Bermakna</p>
-                        </div>
-                        <div class="status-card" style="grid-column: span 2;">
-                            <small>Perjalanan Saat Ini</small>
-                            <p>Menjelajahi jalur kehidupan yang tak terlihat, merajut memori melalui lensa dan doa.</p>
-                        </div>
+                        <div class="status-card"><small>Lokasi</small><p>Di bawah langit yang sama</p></div>
+                        <div class="status-card"><small>Suasana</small><p>Hening yang Bermakna</p></div>
                     </div>
                 </div>
             </div>
@@ -285,16 +242,14 @@
             <div style="width: 50px;"></div>
         </nav>
         <div class="gallery-grid">
-            <div class="gallery-item"><img src="foto1.jpeg" alt="1"><div class="item-overlay"><span>Gn.Egon 2024</span></div></div>
-            <div class="gallery-item"><img src="foto2.jpeg" alt="2"><div class="item-overlay"><span>Gn.Egon 2026</span></div></div>
-            <div class="gallery-item"><img src="foto3.jpeg" alt="3"><div class="item-overlay"><span>Gn.Egon 2024</span></div></div>
-            <div class="gallery-item"><img src="foto4.jpeg" alt="4"><div class="item-overlay"><span>Gn.Egon 2024</span></div></div>
-            <div class="gallery-item"><img src="foto5.jpeg" alt="5"><div class="item-overlay"><span>Gn.Egon 2026</span></div></div>
-            <div class="gallery-item"><img src="foto6.jpeg" alt="6"><div class="item-overlay"><span>Gn.Egon 2026</span></div></div>
+            <div class="gallery-item"><img src="foto1.jpeg" alt="1"></div>
+            <div class="gallery-item"><img src="foto2.jpeg" alt="2"></div>
+            <div class="gallery-item"><img src="foto3.jpeg" alt="3"></div>
+            <div class="gallery-item"><img src="foto4.jpeg" alt="4"></div>
+            <div class="gallery-item"><img src="foto5.jpeg" alt="5"></div>
+            <div class="gallery-item"><img src="foto6.jpeg" alt="6"></div>
         </div>
-        <footer class="footer-static" style="margin-top: 50px;">
-            © OFFICIAL WEBSITE APSADET ALORUHA
-        </footer>
+        <footer class="footer-static" style="margin-top: 50px;">© OFFICIAL WEBSITE APSADET ALORUHA</footer>
     </div>
 
     <script>
