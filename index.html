@@ -8,11 +8,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:italic&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -24,7 +20,7 @@
 
         .hidden { display: none !important; }
 
-        /* --- HALAMAN UTAMA --- */
+        /* --- SECTION 1: HEADER & VIDEO --- */
         .slide-atas {
             display: flex;
             flex-direction: row;
@@ -49,8 +45,15 @@
         .bio-short { color: #888; font-style: italic; margin-bottom: 30px; letter-spacing: 1px; }
         .deskripsi-teks { max-width: 500px; color: #ccc; line-height: 1.8; font-weight: 300; font-size: 0.95rem; }
 
-        .video-box { flex: 1; min-width: 50%; position: relative; background: #000; overflow: hidden; }
-        .video-box video { position: absolute; width: 100%; height: 100%; object-fit: cover; }
+        .video-box { 
+            flex: 1; min-width: 50%; position: relative; 
+            background: #000; overflow: hidden; 
+        }
+
+        .video-box video { 
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; object-fit: cover; 
+        }
         
         .vignette-overlay {
             position: absolute; inset: 0; z-index: 2;
@@ -59,7 +62,7 @@
             pointer-events: none;
         }
 
-        /* Running Text */
+        /* Running Text (Marquee) */
         .marquee {
             position: absolute; bottom: 0; width: 100%;
             background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
@@ -71,94 +74,87 @@
         .marquee-content i { margin-right: 10px; color: #fff; }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        /* --- SECTION 2: LINKS --- */
+        /* --- SECTION 2: JEJAK DIGITAL & KONTEN --- */
         .links-section {
-            padding: 80px 5%;
+            padding: 100px 5%;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('02_picture.png') center/cover fixed;
             display: flex; flex-direction: column; align-items: center;
         }
 
         .content-wrapper {
-            display: flex; gap: 40px; max-width: 1100px; width: 100%; margin-bottom: 60px;
+            display: flex; flex-direction: row; justify-content: center;
+            align-items: stretch; gap: 40px; max-width: 1100px; width: 100%; margin-bottom: 60px;
         }
 
-        .links-container { flex: 1; max-width: 400px; display: flex; flex-direction: column; gap: 12px; }
+        .links-container { flex: 1; max-width: 400px; display: flex; flex-direction: column; justify-content: space-between; }
 
         .link-card {
             display: flex; align-items: center; padding: 18px 25px;
             background: #fff; color: #000; text-decoration: none;
-            border-radius: 50px; font-weight: 600; transition: 0.3s;
+            border-radius: 50px; margin-bottom: 12px; font-weight: 600;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .link-card:hover { transform: translateX(10px); background: #f0f0f0; }
         .link-card i { margin-right: 15px; width: 20px; text-align: center; }
 
-        .aesthetic-side { flex: 1.2; display: flex; flex-direction: column; gap: 20px; }
-        .quote-box { border-left: 2px solid rgba(255,255,255,0.2); padding-left: 25px; }
-        .quote-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 1.4; color: #eee; }
+        .aesthetic-side { flex: 1.2; display: flex; flex-direction: column; gap: 20px; justify-content: space-between; }
+        
+        .quote-box { border-left: 2px solid rgba(255,255,255,0.2); padding-left: 25px; margin-bottom: 10px; }
+        .quote-box h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; line-height: 1.4; margin-bottom: 10px; color: #eee; }
 
-        .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; height: 100%; }
         .status-card {
             background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
             padding: 20px; border-radius: 20px; backdrop-filter: blur(10px);
+            display: flex; flex-direction: column; justify-content: center;
         }
-        .status-card small { display: block; text-transform: uppercase; letter-spacing: 2px; font-size: 0.6rem; color: #666; margin-bottom: 5px; }
-        .status-card p { font-size: 0.85rem; color: #ccc; }
+        .status-card small { display: block; text-transform: uppercase; letter-spacing: 2px; font-size: 0.6rem; color: #666; margin-bottom: 8px; }
+        .status-card p { font-size: 0.85rem; color: #ccc; font-weight: 300; line-height: 1.5; }
 
         .btn-open-gallery {
-            cursor: pointer; color: #555; font-size: 0.7rem; letter-spacing: 5px;
+            cursor: pointer; color: #444; font-size: 0.7rem; letter-spacing: 5px;
             text-transform: uppercase; transition: 0.4s; margin-top: 40px;
         }
         .btn-open-gallery:hover { color: #fff; letter-spacing: 8px; }
 
-        /* --- GALERI --- */
-        #gallery-page { background-color: #050505; min-height: 100vh; padding: 60px 5%; }
-        .gallery-nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto 40px; }
-        .btn-back { cursor: pointer; font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 2px; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
-        .gallery-item { position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: 15px; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: 0.5s; }
-        .gallery-item:hover img { filter: brightness(1); transform: scale(1.05); }
+        /* --- HALAMAN GALERI --- */
+        #gallery-page { background-color: #050505; min-height: 100vh; padding: 60px 5% 120px; }
+        .gallery-nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto 60px; }
+        .btn-back { cursor: pointer; font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        .gallery-title { font-size: 1.2rem; letter-spacing: 10px; font-weight: 300; text-transform: uppercase; }
+        
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; max-width: 1100px; margin: 0 auto; }
+        .gallery-item { position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: 15px; background: #111; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 1s; filter: brightness(0.7); }
+        .gallery-item:hover img { transform: scale(1.1); filter: brightness(1); }
 
         .footer-static {
             background: #fff; color: #000; padding: 20px; text-align: center;
-            font-size: 0.65rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
+            font-size: 0.65rem; font-weight: 800; letter-spacing: 3px; width: 100%; text-transform: uppercase;
         }
 
-        /* --- RESPONSIVE MOBILE OPTIMIZED --- */
+        /* --- RESPONSIVE HP (PERBAIKAN TOTAL) --- */
         @media (max-width: 900px) {
             .slide-atas { flex-direction: column; min-height: auto; }
             
-            /* Susun urutan: Profil (1), Running Text (2), Video (3) */
             .profil-box { 
-                order: 1; 
-                padding: 40px 20px 20px; 
-                min-height: auto;
+                order: 1; padding: 50px 25px 30px; width: 100%; min-height: auto;
             }
-            .profil-box img { width: 120px; height: 120px; margin-bottom: 15px; }
-            .profil-box h2 { font-size: 1.6rem; }
-            .bio-short { margin-bottom: 15px; }
 
             .marquee { 
-                order: 2; 
-                position: relative; 
-                bottom: auto; 
-                background: rgba(255,255,255,0.1);
-                margin: 10px 0;
+                order: 2; position: relative; bottom: auto; background: rgba(255,255,255,0.08);
             }
 
             .video-box { 
-                order: 3; 
-                height: 380px; /* Video cukup besar untuk dilihat jelas */
-                width: 90%; 
-                margin: 0 auto 30px;
-                border-radius: 20px;
-                overflow: hidden;
+                order: 3; width: 100%; height: 450px; min-height: 450px; border-radius: 0; margin: 0;
             }
-            .video-box video { position: relative; height: 100%; width: 100%; }
-            .vignette-overlay { display: none; } /* Matikan overlay di HP agar video lebih cerah */
+            .video-box video { position: absolute; }
+            .vignette-overlay { background: linear-gradient(to bottom, transparent 70%, #000 100%); }
 
-            .content-wrapper { flex-direction: column; gap: 30px; }
-            .links-container { max-width: 100%; }
+            .content-wrapper { flex-direction: column; align-items: center; }
+            .links-container { width: 100%; max-width: 100%; margin-bottom: 30px; }
+            .aesthetic-side { width: 100%; text-align: center; }
+            .quote-box { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding: 30px 0 0 0; }
             .status-grid { grid-template-columns: 1fr; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
         }
@@ -182,14 +178,6 @@
                 </p>
             </div>
 
-            <div class="video-box">
-                <video autoplay muted loop playsinline poster="01_picture.jpg">
-                    <source src="01_Video.mp4" type="video/mp4">
-                    Browser Anda tidak mendukung tag video.
-                </video>
-                <div class="vignette-overlay"></div>
-            </div>
-
             <div class="marquee">
                 <div class="marquee-content">
                     <span><i class="fab fa-instagram"></i> @apsadet24</span>
@@ -203,6 +191,13 @@
                     <span><i class="fab fa-youtube"></i> @apsadetaloruha24</span>
                     <span><i class="fab fa-facebook"></i> Apsadet AloRuha</span>
                 </div>
+            </div>
+
+            <div class="video-box">
+                <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="01_picture.jpg">
+                    <source src="01_Video.mp4" type="video/mp4">
+                </video>
+                <div class="vignette-overlay"></div>
             </div>
         </section>
 
@@ -219,10 +214,22 @@
                 <div class="aesthetic-side">
                     <div class="quote-box">
                         <h3>"Matahari terbenam untuk terbit kembali, sebagaimana kita harus melepas untuk menemukan diri."</h3>
+                        <p style="color: #666; font-style: italic; font-size: 0.75rem;">— Catatan Sang Pengelana</p>
                     </div>
+
                     <div class="status-grid">
-                        <div class="status-card"><small>Lokasi</small><p>Di bawah langit yang sama</p></div>
-                        <div class="status-card"><small>Suasana</small><p>Hening yang Bermakna</p></div>
+                        <div class="status-card">
+                            <small>Lokasi</small>
+                            <p>Di bawah langit yang sama</p>
+                        </div>
+                        <div class="status-card">
+                            <small>Suasana</small>
+                            <p>Hening yang Bermakna</p>
+                        </div>
+                        <div class="status-card" style="grid-column: span 2;">
+                            <small>Perjalanan Saat Ini</small>
+                            <p>Menjelajahi jalur kehidupan yang tak terlihat, merajut memori melalui lensa dan doa.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -265,6 +272,12 @@
             }
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
+
+        // Paksa video putar di semua perangkat
+        window.addEventListener('load', function() {
+            const v = document.querySelector('video');
+            if(v) v.play();
+        });
     </script>
 </body>
 </html>
